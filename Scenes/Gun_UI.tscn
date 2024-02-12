@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://btwk1btgeve21"]
+
+[ext_resource type="Texture2D" uid="uid://dgt8t4ruggyki" path="res://Assets/gun-rhythm-UI.png" id="1_6qxsk"]
+
+[node name="gun_UI" type="Sprite2D"]
+texture_filter = 1
+texture = ExtResource("1_6qxsk")

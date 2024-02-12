@@ -22,7 +22,7 @@ var time_off_beat = 0.0
 
 func _ready():
 	sec_per_beat = 60.0 / bpm
-	self.play_from_beat(0, 0)
+	play()
 
 
 func _physics_process(_delta):
@@ -61,7 +61,7 @@ func play_from_beat(beat, offset):
 	play()
 	seek(beat * sec_per_beat)
 	beats_before_start = offset
-	measure = beat % measures
+	measure = (beat % measures) + 1
 
 
 #helper to allow us to spawn beats offset before song start
