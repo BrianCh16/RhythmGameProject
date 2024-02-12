@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://ll72s4r8qp7s"]
+
+[ext_resource type="AudioStream" uid="uid://s6w2sj6mmulc" path="res://Sounds/Smooth Hits.mp3" id="1_qbrfy"]
+[ext_resource type="Script" path="res://Scripts/conductor.gd" id="1_tq1g2"]
+
+[node name="Conductor" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_qbrfy")
+script = ExtResource("1_tq1g2")
+bpm = 120
+
+[node name="StartTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
