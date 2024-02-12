@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7tbfnmohlsl6"]
+
+[ext_resource type="Script" path="res://Boss_scenes/glitchia/Glitchia_beam.gd" id="1_qgw3e"]
+
+[node name="GlitchiaBeam" type="Node2D"]
+script = ExtResource("1_qgw3e")
+
+[node name="beam" type="Line2D" parent="."]
+show_behind_parent = true
+points = PackedVector2Array(0, 0, 0, 0)
+default_color = Color(0.937255, 0.839216, 0.92549, 1)

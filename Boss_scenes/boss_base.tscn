@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqp00yai15ygl"]
+
+[ext_resource type="Script" path="res://Boss_scenes/boss_base.gd" id="1_kmgys"]
+[ext_resource type="PackedScene" uid="uid://ll72s4r8qp7s" path="res://Scripts/conductor.tscn" id="2_cefna"]
+[ext_resource type="PackedScene" uid="uid://d0jhskt4iigwp" path="res://Boss_scenes/glitchia/glitchia.tscn" id="3_3appo"]
+
+[node name="BossBase" type="Node2D"]
+script = ExtResource("1_kmgys")
+
+[node name="Conductor" parent="." instance=ExtResource("2_cefna")]
+position = Vector2(-104.099, 24.1838)
+
+[node name="Glitchia" parent="." instance=ExtResource("3_3appo")]
+position = Vector2(185, 167)
+
+[connection signal="report_measure" from="Conductor" to="." method="_on_conductor_report_measure"]
+[connection signal="report_measure" from="Conductor" to="Glitchia" method="_on_conductor_report_measure"]
