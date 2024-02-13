@@ -1,22 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://35k3lajoan3m"]
+[gd_scene load_steps=5 format=3 uid="uid://35k3lajoan3m"]
 
 [ext_resource type="PackedScene" uid="uid://btwk1btgeve21" path="res://Scenes/Gun_UI.tscn" id="1_e2yda"]
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_twhb6"]
 [ext_resource type="PackedScene" uid="uid://ll72s4r8qp7s" path="res://Scenes/conductor.tscn" id="3_4134r"]
+[ext_resource type="AudioStream" uid="uid://cl3rj6tivp42o" path="res://Sounds/Kagamine RinLenElectric Angel _えれくとりっくえんじぇぅ_VOCALOID-PV (1).mp3" id="4_u42x7"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_twhb6")
 
 [node name="gun_UI" parent="." instance=ExtResource("1_e2yda")]
 position = Vector2(577, 573)
-scale = Vector2(3.6, 3.605)
+scale = Vector2(3.595, 3.6)
 
 [node name="Conductor" parent="." instance=ExtResource("3_4134r")]
+stream = ExtResource("4_u42x7")
+bpm = 150
+measures = 4
 
-[node name="Timer" type="Timer" parent="."]
-autostart = true
-
-[node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(1201, 577)
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="report_beat" from="Conductor" to="." method="_on_conductor_report_beat"]
+[connection signal="report_measure" from="Conductor" to="." method="_on_conductor_report_measure"]

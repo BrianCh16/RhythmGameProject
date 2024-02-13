@@ -1,7 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://btwk1btgeve21"]
+[gd_scene load_steps=4 format=3 uid="uid://btwk1btgeve21"]
 
 [ext_resource type="Texture2D" uid="uid://dgt8t4ruggyki" path="res://Assets/gun-rhythm-UI.png" id="1_6qxsk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7xgly"]
+size = Vector2(4, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5384d"]
 
 [node name="gun_UI" type="Sprite2D"]
 texture_filter = 1
 texture = ExtResource("1_6qxsk")
+
+[node name="PerfectArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PerfectArea"]
+shape = SubResource("RectangleShape2D_7xgly")
+
+[node name="GreatArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GreatArea"]
+shape = SubResource("RectangleShape2D_5384d")
+
+[node name="Area2D2" type="Area2D" parent="."]
