@@ -1,19 +1,31 @@
-[gd_scene load_steps=5 format=3 uid="uid://35k3lajoan3m"]
+[gd_scene load_steps=6 format=3 uid="uid://35k3lajoan3m"]
 
 [ext_resource type="PackedScene" uid="uid://btwk1btgeve21" path="res://Scenes/Gun_UI.tscn" id="1_e2yda"]
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_twhb6"]
 [ext_resource type="PackedScene" uid="uid://ll72s4r8qp7s" path="res://Scenes/conductor.tscn" id="3_4134r"]
-[ext_resource type="AudioStream" uid="uid://cl3rj6tivp42o" path="res://Sounds/Kagamine RinLenElectric Angel _えれくとりっくえんじぇぅ_VOCALOID-PV (1).mp3" id="4_u42x7"]
+[ext_resource type="AudioStream" uid="uid://cl3rj6tivp42o" path="res://Sounds/Kagamine RinLenElectric Angel _えれくとりっくえんじぇぅ_VOCALOID-PV (1).mp3" id="4_jerwh"]
+
+[sub_resource type="Environment" id="Environment_jeoro"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 5.0
+glow_strength = 1.2
+glow_blend_mode = 0
+glow_hdr_scale = 0.5
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_twhb6")
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_jeoro")
+
 [node name="gun_UI" parent="." instance=ExtResource("1_e2yda")]
 position = Vector2(577, 573)
 scale = Vector2(3.595, 3.6)
+input = "Shoot"
 
 [node name="Conductor" parent="." instance=ExtResource("3_4134r")]
-stream = ExtResource("4_u42x7")
+stream = ExtResource("4_jerwh")
 bpm = 150
 measures = 4
 

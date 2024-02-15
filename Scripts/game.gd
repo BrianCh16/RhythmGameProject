@@ -1,5 +1,16 @@
 extends Node2D
 
+#score related
+var score = 0
+var combo = 0
+var max_combo = 0
+var perfect = 0
+var great = 0
+var okay = 0
+var missed = 0
+
+
+#beat related
 var spawn_1_beat = 0
 var spawn_2_beat = 0
 var spawn_3_beat = 1
@@ -31,7 +42,13 @@ func _on_conductor_report_measure(measure_position):
 	elif measure_position == 4:
 		_spawn_notes(spawn_4_beat)
 
+
 func _on_conductor_report_beat(beat_position):
+	if beat_position > 18:
+		spawn_1_beat = 1
+		spawn_2_beat = 0
+		spawn_3_beat = 1
+		spawn_4_beat = 0
 	if beat_position > 36:
 		spawn_1_beat = 1
 		spawn_2_beat = 1

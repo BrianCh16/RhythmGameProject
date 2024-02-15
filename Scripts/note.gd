@@ -14,7 +14,24 @@ func _physics_process(delta):
 	elif position.x < -50:
 		queue_free()
 
+func destroy(score):
+	$Explosion.emitting = true
+	$Timer.start()
+	$Sprite2D.visible = false
+	if score == 3:
+		$Label.text = "PERFECT"
+		$Label.modulate = Color("f6d6bd")
+	elif score == 2:
+		$Label.text = "GREAT"
+		$Label.modulate = Color("c3a38a")
+	elif score == 1:
+		$Label.text = "OKAY"
+		$Label.modulate = Color("997577")
 
 func initialize():
 	position = SPAWN
 	speed = DIST_TO_TARGET / 2.0
+
+
+func _on_timer_timeout():
+	queue_free()

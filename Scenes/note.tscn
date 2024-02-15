@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bh2ow6njvwfl7"]
+[gd_scene load_steps=8 format=3 uid="uid://bh2ow6njvwfl7"]
 
 [ext_resource type="Script" path="res://Scripts/note.gd" id="1_lebdt"]
 [ext_resource type="Texture2D" uid="uid://p546ju2da61q" path="res://Assets/Bullet.png" id="2_4jrrq"]
@@ -6,7 +6,105 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7pgdc"]
 radius = 4.0
 
-[node name="Note" type="Area2D"]
+[sub_resource type="FontFile" id="FontFile_ytq2y"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/10/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/11/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/12/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/15/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/14/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/13/0 = Vector2(0, 0)
+cache/0/10/0/ascent = 0.0
+cache/0/10/0/descent = 0.0
+cache/0/10/0/underline_position = 0.0
+cache/0/10/0/underline_thickness = 0.0
+cache/0/10/0/scale = 1.0
+cache/0/10/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/10/0/kerning_overrides/10/0 = Vector2(0, 0)
+cache/0/10/0/kerning_overrides/11/0 = Vector2(0, 0)
+cache/0/10/0/kerning_overrides/12/0 = Vector2(0, 0)
+cache/0/10/0/kerning_overrides/15/0 = Vector2(0, 0)
+cache/0/10/0/kerning_overrides/14/0 = Vector2(0, 0)
+cache/0/10/0/kerning_overrides/13/0 = Vector2(0, 0)
+cache/0/11/0/ascent = 0.0
+cache/0/11/0/descent = 0.0
+cache/0/11/0/underline_position = 0.0
+cache/0/11/0/underline_thickness = 0.0
+cache/0/11/0/scale = 1.0
+cache/0/11/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/11/0/kerning_overrides/10/0 = Vector2(0, 0)
+cache/0/11/0/kerning_overrides/11/0 = Vector2(0, 0)
+cache/0/11/0/kerning_overrides/12/0 = Vector2(0, 0)
+cache/0/11/0/kerning_overrides/15/0 = Vector2(0, 0)
+cache/0/11/0/kerning_overrides/14/0 = Vector2(0, 0)
+cache/0/11/0/kerning_overrides/13/0 = Vector2(0, 0)
+cache/0/12/0/ascent = 0.0
+cache/0/12/0/descent = 0.0
+cache/0/12/0/underline_position = 0.0
+cache/0/12/0/underline_thickness = 0.0
+cache/0/12/0/scale = 1.0
+cache/0/12/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/12/0/kerning_overrides/10/0 = Vector2(0, 0)
+cache/0/12/0/kerning_overrides/11/0 = Vector2(0, 0)
+cache/0/12/0/kerning_overrides/12/0 = Vector2(0, 0)
+cache/0/12/0/kerning_overrides/15/0 = Vector2(0, 0)
+cache/0/12/0/kerning_overrides/14/0 = Vector2(0, 0)
+cache/0/12/0/kerning_overrides/13/0 = Vector2(0, 0)
+cache/0/15/0/ascent = 0.0
+cache/0/15/0/descent = 0.0
+cache/0/15/0/underline_position = 0.0
+cache/0/15/0/underline_thickness = 0.0
+cache/0/15/0/scale = 1.0
+cache/0/15/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/15/0/kerning_overrides/10/0 = Vector2(0, 0)
+cache/0/15/0/kerning_overrides/11/0 = Vector2(0, 0)
+cache/0/15/0/kerning_overrides/12/0 = Vector2(0, 0)
+cache/0/15/0/kerning_overrides/15/0 = Vector2(0, 0)
+cache/0/15/0/kerning_overrides/14/0 = Vector2(0, 0)
+cache/0/15/0/kerning_overrides/13/0 = Vector2(0, 0)
+cache/0/14/0/ascent = 0.0
+cache/0/14/0/descent = 0.0
+cache/0/14/0/underline_position = 0.0
+cache/0/14/0/underline_thickness = 0.0
+cache/0/14/0/scale = 1.0
+cache/0/14/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/14/0/kerning_overrides/10/0 = Vector2(0, 0)
+cache/0/14/0/kerning_overrides/11/0 = Vector2(0, 0)
+cache/0/14/0/kerning_overrides/12/0 = Vector2(0, 0)
+cache/0/14/0/kerning_overrides/15/0 = Vector2(0, 0)
+cache/0/14/0/kerning_overrides/14/0 = Vector2(0, 0)
+cache/0/14/0/kerning_overrides/13/0 = Vector2(0, 0)
+cache/0/13/0/ascent = 0.0
+cache/0/13/0/descent = 0.0
+cache/0/13/0/underline_position = 0.0
+cache/0/13/0/underline_thickness = 0.0
+cache/0/13/0/scale = 1.0
+cache/0/13/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/13/0/kerning_overrides/10/0 = Vector2(0, 0)
+cache/0/13/0/kerning_overrides/11/0 = Vector2(0, 0)
+cache/0/13/0/kerning_overrides/12/0 = Vector2(0, 0)
+cache/0/13/0/kerning_overrides/15/0 = Vector2(0, 0)
+cache/0/13/0/kerning_overrides/14/0 = Vector2(0, 0)
+cache/0/13/0/kerning_overrides/13/0 = Vector2(0, 0)
+
+[sub_resource type="Theme" id="Theme_c2i0v"]
+default_font = SubResource("FontFile_ytq2y")
+default_font_size = 10
+
+[sub_resource type="Curve" id="Curve_p1w0i"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_ovnp4"]
+offsets = PackedFloat32Array(0, 0.473333, 0.746667, 1)
+colors = PackedColorArray(1, 0.966667, 0, 1, 1, 0.352431, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1)
+
+[node name="Note" type="Area2D" groups=["note"]]
 script = ExtResource("1_lebdt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -15,3 +113,31 @@ texture = ExtResource("2_4jrrq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_7pgdc")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -19.0
+offset_top = -9.0
+offset_right = 21.0
+offset_bottom = 14.0
+theme = SubResource("Theme_c2i0v")
+
+[node name="Explosion" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 50
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+scale_amount_min = 5.0
+scale_amount_max = 10.0
+scale_amount_curve = SubResource("Curve_p1w0i")
+color_ramp = SubResource("Gradient_ovnp4")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

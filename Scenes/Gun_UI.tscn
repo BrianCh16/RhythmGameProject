@@ -1,15 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://btwk1btgeve21"]
+[gd_scene load_steps=6 format=3 uid="uid://btwk1btgeve21"]
 
 [ext_resource type="Texture2D" uid="uid://dgt8t4ruggyki" path="res://Assets/gun-rhythm-UI.png" id="1_6qxsk"]
+[ext_resource type="Script" path="res://Scripts/Gun_UI.gd" id="2_noi40"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7xgly"]
 size = Vector2(4, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5384d"]
+size = Vector2(12, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b8da6"]
+size = Vector2(24, 20)
 
 [node name="gun_UI" type="Sprite2D"]
 texture_filter = 1
+position = Vector2(-1, 0)
 texture = ExtResource("1_6qxsk")
+script = ExtResource("2_noi40")
 
 [node name="PerfectArea" type="Area2D" parent="."]
 
@@ -21,4 +28,14 @@ shape = SubResource("RectangleShape2D_7xgly")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GreatArea"]
 shape = SubResource("RectangleShape2D_5384d")
 
-[node name="Area2D2" type="Area2D" parent="."]
+[node name="OkayArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OkayArea"]
+shape = SubResource("RectangleShape2D_b8da6")
+
+[connection signal="area_entered" from="PerfectArea" to="." method="_on_perfectArea_area_entered"]
+[connection signal="area_exited" from="PerfectArea" to="." method="_on_perfectArea_area_exited"]
+[connection signal="area_entered" from="GreatArea" to="." method="_on_greatArea_area_entered"]
+[connection signal="area_exited" from="GreatArea" to="." method="_on_greatArea_area_exited"]
+[connection signal="area_entered" from="OkayArea" to="." method="_on_okayArea_area_entered"]
+[connection signal="area_exited" from="OkayArea" to="." method="_on_okayArea_area_exited"]
