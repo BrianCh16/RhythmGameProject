@@ -19,19 +19,19 @@ script = ExtResource("1_twhb6")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_jeoro")
 
+[node name="Player" parent="." instance=ExtResource("5_klfdw")]
+position = Vector2(549, 298)
+
+[node name="Projectiles" type="Node2D" parent="."]
+
 [node name="gun_UI" parent="." instance=ExtResource("1_e2yda")]
 position = Vector2(577, 573)
 scale = Vector2(3.595, 3.6)
 input = "Shoot"
 
-[node name="Player" parent="." instance=ExtResource("5_klfdw")]
-position = Vector2(549, 298)
-
 [node name="Conductor" parent="." instance=ExtResource("3_4134r")]
 bpm = 131
 measures = 4
-
-[node name="Projectiles" type="Node2D" parent="."]
 
 [connection signal="report_beat" from="Conductor" to="." method="_on_conductor_report_beat"]
 [connection signal="report_measure" from="Conductor" to="." method="_on_conductor_report_measure"]

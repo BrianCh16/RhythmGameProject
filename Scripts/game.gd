@@ -14,9 +14,11 @@ var spawn_1_beat = 0
 var spawn_2_beat = 0
 var spawn_3_beat = 1
 var spawn_4_beat = 0
+var can_fire = false
 
 #onready
 @onready var player = $Player
+@onready var gun_ui = $gun_UI
 
 #load
 var note = preload("res://Scenes/note.tscn")
@@ -27,15 +29,22 @@ var laser : PackedScene = preload("res://Scenes/laser.tscn")
 func _ready():
 	$Conductor.play_with_beat_offset(6)
 	player.fire_laser.connect(_on_player_fire_laser)
+	gun_ui.sync_shot.connect(_on_gunUI_can_fire)
 
 
 func _on_player_fire_laser(player_pos, player_dir):
-	var instance = laser.instantiate() as Area2D
-	instance.scale = Vector2(0.5, 0.5)
-	instance.position = player_pos
-	instance.direction = player_dir
-	instance.rotation = player_dir.angle()
-	$Projectiles.add_child(instance)
+	if can_fire:
+		var instance = laser.instantiate() as Area2D
+		instance.scale = Vector2(0.5, 0.5)
+		instance.position = player_pos
+		instance.direction = player_dir
+		instance.rotation = player_dir.angle()
+		$Projectiles.add_child(instance)
+		can_fire = false
+
+
+func _on_gunUI_can_fire():
+	can_fire = true
 
 
 func _spawn_notes(to_spawn):

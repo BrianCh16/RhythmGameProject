@@ -7,6 +7,7 @@ var current_note
 
 @export var input = ""
 
+signal sync_shot
 
 func _unhandled_input(event):
 	if event.is_action(input):
@@ -18,6 +19,7 @@ func _unhandled_input(event):
 					current_note.destroy(2)
 				elif okay:
 					current_note.destroy(1)
+				sync_shot.emit()
 				_reset()
 			else:
 				pass #kill score
