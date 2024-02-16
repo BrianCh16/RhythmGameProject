@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://btwk1btgeve21" path="res://Scenes/Gun_UI.tscn" id="1_e2yda"]
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_twhb6"]
 [ext_resource type="PackedScene" uid="uid://ll72s4r8qp7s" path="res://Scenes/conductor.tscn" id="3_4134r"]
-[ext_resource type="AudioStream" uid="uid://cl3rj6tivp42o" path="res://Sounds/Kagamine RinLenElectric Angel _えれくとりっくえんじぇぅ_VOCALOID-PV (1).mp3" id="4_jerwh"]
+[ext_resource type="PackedScene" uid="uid://4qmbwtu2047u" path="res://Scenes/player.tscn" id="5_klfdw"]
 
 [sub_resource type="Environment" id="Environment_jeoro"]
 background_mode = 3
@@ -24,10 +24,14 @@ position = Vector2(577, 573)
 scale = Vector2(3.595, 3.6)
 input = "Shoot"
 
+[node name="Player" parent="." instance=ExtResource("5_klfdw")]
+position = Vector2(549, 298)
+
 [node name="Conductor" parent="." instance=ExtResource("3_4134r")]
-stream = ExtResource("4_jerwh")
-bpm = 150
+bpm = 131
 measures = 4
+
+[node name="Projectiles" type="Node2D" parent="."]
 
 [connection signal="report_beat" from="Conductor" to="." method="_on_conductor_report_beat"]
 [connection signal="report_measure" from="Conductor" to="." method="_on_conductor_report_measure"]

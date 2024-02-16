@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://cn0vixc5olkxg"]
+
+[ext_resource type="Texture2D" uid="uid://cxu1qgbiemsln" path="res://Assets/blueLaser-Sheet-export.png" id="1_cwj7u"]
+[ext_resource type="Script" path="res://Scripts/laser.gd" id="1_dbooa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7py4r"]
+atlas = ExtResource("1_cwj7u")
+region = Rect2(0, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3i2e1"]
+atlas = ExtResource("1_cwj7u")
+region = Rect2(120, 0, 120, 120)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4tc8x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7py4r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3i2e1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_equlg"]
+radius = 23.0
+height = 78.0
+
+[node name="Laser" type="Area2D"]
+collision_layer = 4
+collision_mask = 10
+script = ExtResource("1_dbooa")
+speed = 750
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_4tc8x")
+autoplay = "default"
+frame_progress = 0.708584
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_equlg")

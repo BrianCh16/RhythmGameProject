@@ -9,19 +9,33 @@ var great = 0
 var okay = 0
 var missed = 0
 
-
 #beat related
 var spawn_1_beat = 0
 var spawn_2_beat = 0
 var spawn_3_beat = 1
 var spawn_4_beat = 0
 
-var note = load("res://Scenes/note.tscn")
+#onready
+@onready var player = $Player
+
+#load
+var note = preload("res://Scenes/note.tscn")
+var laser : PackedScene = preload("res://Scenes/laser.tscn")
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Conductor.play_with_beat_offset(6)
+	player.fire_laser.connect(_on_player_fire_laser)
+
+
+func _on_player_fire_laser(player_pos, player_dir):
+	var instance = laser.instantiate() as Area2D
+	instance.scale = Vector2(0.5, 0.5)
+	instance.position = player_pos
+	instance.direction = player_dir
+	instance.rotation = player_dir.angle()
+	$Projectiles.add_child(instance)
 
 
 func _spawn_notes(to_spawn):
