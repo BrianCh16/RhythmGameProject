@@ -4,7 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://p546ju2da61q" path="res://Assets/Bullet.png" id="2_4jrrq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7pgdc"]
-radius = 4.0
+radius = 2.0
+height = 26.0
 
 [sub_resource type="FontFile" id="FontFile_ytq2y"]
 cache/0/16/0/ascent = 0.0

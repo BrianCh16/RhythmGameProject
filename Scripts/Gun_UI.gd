@@ -9,6 +9,7 @@ var current_note
 
 signal sync_shot
 
+
 func _unhandled_input(event):
 	if event.is_action(input):
 		if event.is_action_pressed(input, false):

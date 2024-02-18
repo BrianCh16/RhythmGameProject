@@ -30,7 +30,7 @@ func destroy(score):
 
 func initialize():
 	position = SPAWN
-	speed = DIST_TO_TARGET / 2.0
+	speed = DIST_TO_TARGET / 1.5
 
 
 func _on_timer_timeout():
