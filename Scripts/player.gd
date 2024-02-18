@@ -9,6 +9,7 @@ extends CharacterBody2D
 @onready var shadow_timer = $ShadowTimer
 @onready var lightning_particles = $Lightning
 @onready var dash_timer = $DashTimer
+@onready var dash_cooldown = $DashCooldown
 
 signal fire_laser(player_pos, player_dir)
 
@@ -19,6 +20,7 @@ var can_dash : bool = true
 func _ready():
 	anim.play("Idle")
 	walk.visible = false
+	dash_cooldown.visible = false
 
 
 func _physics_process(delta):
@@ -50,6 +52,7 @@ func _physics_process(delta):
 		lightning_particles.emitting = true
 		$DashSound.play()
 		$DashTimer.start()
+		dash_cooldown.visible = true
 		can_dash = false
 		
 		var tween = get_tree().create_tween()
@@ -71,6 +74,7 @@ func _physics_process(delta):
 			idle.visible = true
 		velocity = direction * speed
 
+	dash_cooldown.value = dash_timer.wait_time - dash_timer.time_left
 	move_and_slide()
 
 
@@ -86,3 +90,4 @@ func _on_shadow_timer_timeout():
 
 func _on_dash_timer_timeout():
 	can_dash = true
+	dash_cooldown.visible = false

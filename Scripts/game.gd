@@ -27,7 +27,7 @@ var laser : PackedScene = preload("res://Scenes/laser.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Conductor.play_with_beat_offset(6)
+	#$Conductor.play_with_beat_offset(6)
 	player.fire_laser.connect(_on_player_fire_laser)
 	gun_ui.sync_shot.connect(_on_gunUI_can_fire)
 
