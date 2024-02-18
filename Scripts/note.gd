@@ -1,7 +1,7 @@
 extends Area2D
 
 const TARGET_X = 577
-const SPAWN = Vector2(1200, 577)
+const SPAWN = Vector2(1200, 585)
 const DIST_TO_TARGET = SPAWN.x - TARGET_X
 
 var speed = 0

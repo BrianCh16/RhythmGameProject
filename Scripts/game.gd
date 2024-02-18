@@ -27,7 +27,7 @@ var laser : PackedScene = preload("res://Scenes/laser.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Conductor.play_with_beat_offset(6)
+	#$Conductor.play_with_beat_offset(6)
 	player.fire_laser.connect(_on_player_fire_laser)
 	gun_ui.sync_shot.connect(_on_gunUI_can_fire)
 	gun_ui.increment_score.connect(_on_gunUI_increment_score)
@@ -52,7 +52,7 @@ func _on_gunUI_can_fire():
 func _spawn_notes(to_spawn):
 	if to_spawn > 0:
 		var instance = note.instantiate()
-		instance.scale = Vector2(3.6,3.6)
+		instance.scale = Vector2(3.6,3.2)
 		instance.initialize()
 		add_child(instance)
 
