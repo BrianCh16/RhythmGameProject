@@ -8,6 +8,7 @@ var current_note
 @export var input = ""
 
 signal sync_shot
+signal increment_score(note)
 
 
 func _unhandled_input(event):
@@ -16,14 +17,17 @@ func _unhandled_input(event):
 			if current_note != null:
 				if perfect:
 					current_note.destroy(3)
+					increment_score.emit(3)
 				elif great:
 					current_note.destroy(2)
+					increment_score.emit(2)
 				elif okay:
 					current_note.destroy(1)
+					increment_score.emit(1)
 				sync_shot.emit()
 				_reset()
 			else:
-				pass #kill score
+				increment_score.emit(0)
 
 
 func _on_okayArea_area_entered(area):
@@ -50,6 +54,10 @@ func _on_greatArea_area_exited(area):
 func _on_okayArea_area_exited(area):
 	okay = false
 	current_note = null
+
+
+func _on_missedArea_area_entered(area):
+	increment_score.emit(0)
 
 
 func _reset():

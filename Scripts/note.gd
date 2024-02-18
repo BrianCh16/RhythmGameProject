@@ -20,13 +20,13 @@ func destroy(score):
 	$Sprite2D.visible = false
 	if score == 3:
 		$Label.text = "PERFECT"
-		$Label.modulate = Color("f6d6bd")
+		$Label.modulate = Color(0.11610390990973, 0.76490116119385, 0.98519545793533)
 	elif score == 2:
 		$Label.text = "GREAT"
-		$Label.modulate = Color("c3a38a")
+		$Label.modulate = Color(0.0580497533083, 0.50723731517792, 0.65784513950348)
 	elif score == 1:
 		$Label.text = "OKAY"
-		$Label.modulate = Color("997577")
+		$Label.modulate = Color(0.08347775787115, 0.36744633316994, 0.33009067177773)
 
 func initialize():
 	position = SPAWN

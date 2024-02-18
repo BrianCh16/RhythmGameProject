@@ -50,6 +50,7 @@ hframes = 8
 script = ExtResource("2_a0ml3")
 
 [node name="Lightning-strike-sheet" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
 texture = ExtResource("3_qynfa")
 hframes = 16
 frame = 2

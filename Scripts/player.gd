@@ -56,7 +56,7 @@ func _physics_process(delta):
 		can_dash = false
 		
 		var tween = get_tree().create_tween()
-		tween.tween_property(self, "position", position + velocity * 1.25, 0.4)
+		tween.tween_property(self, "position", position + velocity * 1.3, 0.4)
 		direction = Vector2.ZERO
 		await tween.finished
 		

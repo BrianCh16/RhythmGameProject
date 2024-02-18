@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://35k3lajoan3m"]
+[gd_scene load_steps=11 format=3 uid="uid://35k3lajoan3m"]
 
 [ext_resource type="PackedScene" uid="uid://btwk1btgeve21" path="res://Scenes/Gun_UI.tscn" id="1_e2yda"]
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_twhb6"]
@@ -6,6 +6,39 @@
 [ext_resource type="AudioStream" uid="uid://7vc2lovc177a" path="res://Sounds/lazergun.mp3" id="5_d7xdc"]
 [ext_resource type="PackedScene" uid="uid://4qmbwtu2047u" path="res://Scenes/player.tscn" id="5_klfdw"]
 [ext_resource type="AudioStream" uid="uid://c620bohkujsvb" path="res://Sounds/Glitchia_P1.mp3" id="5_wymax"]
+
+[sub_resource type="FontFile" id="FontFile_apho8"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/10/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/20/0 = Vector2(0, 0)
+cache/0/10/0/ascent = 0.0
+cache/0/10/0/descent = 0.0
+cache/0/10/0/underline_position = 0.0
+cache/0/10/0/underline_thickness = 0.0
+cache/0/10/0/scale = 1.0
+cache/0/10/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/10/0/kerning_overrides/10/0 = Vector2(0, 0)
+cache/0/10/0/kerning_overrides/20/0 = Vector2(0, 0)
+cache/0/20/0/ascent = 0.0
+cache/0/20/0/descent = 0.0
+cache/0/20/0/underline_position = 0.0
+cache/0/20/0/underline_thickness = 0.0
+cache/0/20/0/scale = 1.0
+cache/0/20/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/20/0/kerning_overrides/10/0 = Vector2(0, 0)
+cache/0/20/0/kerning_overrides/20/0 = Vector2(0, 0)
+
+[sub_resource type="Theme" id="Theme_tdbce"]
+default_font = SubResource("FontFile_apho8")
+default_font_size = 20
+
+[sub_resource type="Theme" id="Theme_5lpwa"]
+default_font_size = 20
 
 [sub_resource type="Environment" id="Environment_jeoro"]
 background_mode = 3
@@ -17,6 +50,17 @@ glow_hdr_scale = 0.5
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_twhb6")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+theme = SubResource("Theme_tdbce")
+
+[node name="Combo" type="Label" parent="."]
+offset_top = 23.0
+offset_right = 40.0
+offset_bottom = 47.0
+theme = SubResource("Theme_5lpwa")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_jeoro")

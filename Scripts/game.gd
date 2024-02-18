@@ -27,9 +27,10 @@ var laser : PackedScene = preload("res://Scenes/laser.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#$Conductor.play_with_beat_offset(6)
+	$Conductor.play_with_beat_offset(6)
 	player.fire_laser.connect(_on_player_fire_laser)
 	gun_ui.sync_shot.connect(_on_gunUI_can_fire)
+	gun_ui.increment_score.connect(_on_gunUI_increment_score)
 
 
 func _on_player_fire_laser(player_pos, player_dir):
@@ -78,3 +79,29 @@ func _on_conductor_report_beat(beat_position):
 		spawn_2_beat = 1
 		spawn_3_beat = 1
 		spawn_4_beat = 1
+
+
+func _on_gunUI_increment_score(note_score):
+	if note_score > 0:
+		combo += 1
+	else:
+		combo = 0
+	
+	if note_score == 3:
+		perfect += 1
+	elif note_score == 2:
+		great += 1
+	elif note_score == 1:
+		okay += 1
+	else:
+		missed += 1
+	
+	
+	score += note_score * combo
+	$Label.text = "Score: " + str(score)
+	if combo > 0:
+		$Combo.text = str(combo) + " Combo!"
+		if combo > max_combo:
+			max_combo = combo
+	else:
+		$Combo.text = "Combo dropped"
