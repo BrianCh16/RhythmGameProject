@@ -18,7 +18,7 @@ var can_fire = false
 
 #onready
 @onready var player = $Player
-@onready var gun_ui = $gun_UI
+@onready var gun_ui = $Player/gun_UI
 
 #load
 var note = preload("res://Scenes/note.tscn")
@@ -27,10 +27,11 @@ var laser : PackedScene = preload("res://Scenes/laser.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#$Conductor.play_with_beat_offset(6)
+	$Conductor.play_with_beat_offset(6)
 	player.fire_laser.connect(_on_player_fire_laser)
 	gun_ui.sync_shot.connect(_on_gunUI_can_fire)
 	gun_ui.increment_score.connect(_on_gunUI_increment_score)
+	
 
 
 func _on_player_fire_laser(player_pos, player_dir):
@@ -52,9 +53,11 @@ func _on_gunUI_can_fire():
 func _spawn_notes(to_spawn):
 	if to_spawn > 0:
 		var instance = note.instantiate()
-		instance.scale = Vector2(3.6,3.2)
+		instance.scale = Vector2(1.8,1.6)
 		instance.initialize()
-		add_child(instance)
+		
+		$Player.add_child(instance)
+		#add_child(instance)
 
 
 func _on_conductor_report_measure(measure_position):
@@ -98,10 +101,10 @@ func _on_gunUI_increment_score(note_score):
 	
 	
 	score += note_score * combo
-	$Label.text = "Score: " + str(score)
+	$Player/Label.text = "Score: " + str(score)
 	if combo > 0:
-		$Combo.text = str(combo) + " Combo!"
+		$Player/Combo.text = str(combo) + " Combo!"
 		if combo > max_combo:
 			max_combo = combo
 	else:
-		$Combo.text = "Combo dropped"
+		$Player/Combo.text = "Combo dropped"

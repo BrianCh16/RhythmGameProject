@@ -1,10 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://4qmbwtu2047u"]
+[gd_scene load_steps=14 format=3 uid="uid://4qmbwtu2047u"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_1cpk2"]
 [ext_resource type="Texture2D" uid="uid://cnyoxnlx6nn54" path="res://Assets/Player/PlayerIdle/glitchia-player-idle-Sheet.png" id="1_8rw7w"]
 [ext_resource type="Texture2D" uid="uid://cfq8ksasl8a5c" path="res://Assets/Player/PlayerWalk/glitchia-player-walk-Sheet.png" id="2_2xhi4"]
 [ext_resource type="Texture2D" uid="uid://cufh87qso62fh" path="res://Assets/p90.png" id="4_ao4wv"]
-[ext_resource type="Texture2D" uid="uid://cerhh6lmvx5at" path="res://Assets/light.png" id="5_2uoii"]
 [ext_resource type="AudioStream" uid="uid://didbcpb6u1chd" path="res://Sounds/dashhithink_2.5_ElectricBoogaloo2.mp3" id="6_2wcej"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wwp5g"]
@@ -122,12 +121,6 @@ position = Vector2(9, -1)
 libraries = {
 "": SubResource("AnimationLibrary_dk7u0")
 }
-
-[node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(-1.5, -10)
-color = Color(0.0823529, 1, 1, 1)
-energy = 0.25
-texture = ExtResource("5_2uoii")
 
 [node name="ShadowTimer" type="Timer" parent="."]
 wait_time = 0.1

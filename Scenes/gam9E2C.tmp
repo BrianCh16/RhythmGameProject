@@ -126,9 +126,11 @@ sources/2 = SubResource("TileSetAtlasSource_x83fu")
 
 [sub_resource type="Environment" id="Environment_jeoro"]
 background_mode = 3
-background_energy_multiplier = 2.0
 glow_enabled = true
-glow_blend_mode = 1
+glow_intensity = 5.0
+glow_strength = 1.2
+glow_blend_mode = 0
+glow_hdr_scale = 0.5
 
 [sub_resource type="FontFile" id="FontFile_apho8"]
 cache/0/16/0/ascent = 0.0
@@ -158,15 +160,13 @@ cache/0/20/0/kerning_overrides/20/0 = Vector2(0, 0)
 
 [sub_resource type="Theme" id="Theme_tdbce"]
 default_font = SubResource("FontFile_apho8")
-default_font_size = 10
+default_font_size = 20
 
 [sub_resource type="Theme" id="Theme_5lpwa"]
-default_font_size = 10
+default_font_size = 20
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_twhb6")
-metadata/_edit_vertical_guides_ = [576.0, 576.0]
-metadata/_edit_horizontal_guides_ = [324.0]
 
 [node name="map" type="Node2D" parent="."]
 modulate = Color(0.564706, 0.564706, 0.564706, 1)
@@ -180,35 +180,26 @@ layer_0/tile_data = PackedInt32Array(-2, 589826, 1, 65534, 589826, 1, 131070, 58
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_jeoro")
 
-[node name="Player" parent="." instance=ExtResource("5_klfdw")]
-self_modulate = Color(1.2, 1.5, 1.5, 1)
-position = Vector2(577, 324)
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-scale = Vector2(0.5, 0.5)
-
-[node name="gun_UI" parent="Player" instance=ExtResource("1_e2yda")]
-position = Vector2(0, 128.65)
-scale = Vector2(1.8, 1.6)
-input = "Shoot"
-
-[node name="Label" type="Label" parent="Player"]
-texture_filter = 1
-offset_left = -281.0
-offset_top = -162.0
-offset_right = -241.0
-offset_bottom = -139.0
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
 theme = SubResource("Theme_tdbce")
 
-[node name="Combo" type="Label" parent="Player"]
-texture_filter = 1
-offset_left = -283.5
-offset_top = -139.0
-offset_right = -243.5
-offset_bottom = -111.0
+[node name="Combo" type="Label" parent="."]
+offset_top = 46.0
+offset_right = 40.0
+offset_bottom = 74.0
 theme = SubResource("Theme_5lpwa")
 
+[node name="Player" parent="." instance=ExtResource("5_klfdw")]
+position = Vector2(576, 324)
+
 [node name="Projectiles" type="Node2D" parent="."]
+
+[node name="gun_UI" parent="." instance=ExtResource("1_e2yda")]
+position = Vector2(576, 581.3)
+scale = Vector2(3.6, 3.2)
+input = "Shoot"
 
 [node name="Conductor" parent="." instance=ExtResource("3_4134r")]
 stream = ExtResource("5_wymax")

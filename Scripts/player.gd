@@ -81,7 +81,7 @@ func _physics_process(delta):
 func add_shadow():
 	var instance = shadow.instantiate()
 	instance.set_property(position, scale)
-	get_tree().current_scene.add_child(instance)
+	$"../Projectiles".add_child(instance)
 
 
 func _on_shadow_timer_timeout():

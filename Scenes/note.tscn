@@ -106,6 +106,7 @@ offsets = PackedFloat32Array(0, 0.473333, 0.746667, 1)
 colors = PackedColorArray(1, 0.966667, 0, 1, 1, 0.352431, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1)
 
 [node name="Note" type="Area2D" groups=["note"]]
+z_index = 1
 script = ExtResource("1_lebdt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
