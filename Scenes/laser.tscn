@@ -3,6 +3,10 @@
 [ext_resource type="Texture2D" uid="uid://cxu1qgbiemsln" path="res://Assets/blueLaser-Sheet-export.png" id="1_cwj7u"]
 [ext_resource type="Script" path="res://Scripts/laser.gd" id="1_dbooa"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_equlg"]
+radius = 23.0
+height = 78.0
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_7py4r"]
 atlas = ExtResource("1_cwj7u")
 region = Rect2(0, 0, 120, 120)
@@ -25,10 +29,6 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_equlg"]
-radius = 23.0
-height = 78.0
-
 [node name="Laser" type="Area2D"]
 modulate = Color(2, 2, 2, 1)
 collision_layer = 4
@@ -36,12 +36,14 @@ collision_mask = 15
 script = ExtResource("1_dbooa")
 speed = 750
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_equlg")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_4tc8x")
 autoplay = "default"
 frame_progress = 0.708584
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 5)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_equlg")
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -41,8 +41,8 @@ func _report_beat():
 		#to track measure and reset
 		if measure > measures:
 			measure = 1
-		print("beats: " + str(song_position_in_beats))
-		print("beat in measure: " + str(measure))
+		#print("beats: " + str(song_position_in_beats))
+		#print("beat in measure: " + str(measure))
 		report_beat.emit(song_position_in_beats)
 		report_measure.emit(measure)
 		last_reported_beat = song_position_in_beats

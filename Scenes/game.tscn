@@ -180,6 +180,8 @@ layer_0/tile_data = PackedInt32Array(-2, 589826, 1, 65534, 589826, 1, 131070, 58
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_jeoro")
 
+[node name="Projectiles" type="Node2D" parent="."]
+
 [node name="Player" parent="." instance=ExtResource("5_klfdw")]
 self_modulate = Color(1.2, 1.5, 1.5, 1)
 position = Vector2(577, 324)
@@ -207,8 +209,6 @@ offset_top = -139.0
 offset_right = -243.5
 offset_bottom = -111.0
 theme = SubResource("Theme_5lpwa")
-
-[node name="Projectiles" type="Node2D" parent="."]
 
 [node name="Conductor" parent="." instance=ExtResource("3_4134r")]
 stream = ExtResource("5_wymax")

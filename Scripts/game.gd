@@ -23,6 +23,7 @@ var can_fire = false
 #load
 var note = preload("res://Scenes/note.tscn")
 var laser : PackedScene = preload("res://Scenes/laser.tscn")
+var robot : PackedScene = preload("res://Scenes/robot_enemy.tscn")
 
 
 # Called when the node enters the scene tree for the first time.
@@ -31,7 +32,6 @@ func _ready():
 	player.fire_laser.connect(_on_player_fire_laser)
 	gun_ui.sync_shot.connect(_on_gunUI_can_fire)
 	gun_ui.increment_score.connect(_on_gunUI_increment_score)
-	
 
 
 func _on_player_fire_laser(player_pos, player_dir):
@@ -57,7 +57,6 @@ func _spawn_notes(to_spawn):
 		instance.initialize()
 		
 		$Player.add_child(instance)
-		#add_child(instance)
 
 
 func _on_conductor_report_measure(measure_position):

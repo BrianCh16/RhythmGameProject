@@ -4,6 +4,8 @@ extends CharacterBody2D
 
 var player_position
 
+var is_enemy : bool = true
+
 @onready var player = $"../../Player"
 
 
@@ -18,10 +20,11 @@ func _physics_process(delta):
 
 
 func _on_area_2d_body_entered(body):
-	print(body)
+	if body.is_in_group("player"):
+		speed = 0
+		$Explosion.visible = true
+		$AnimationPlayer.play("Explosion")
+	
+func hit():
 	speed = 0
-	$Explosion.visible = true
-	$AnimationPlayer.play("Explosion")
-
-func _on_area_2d_area_entered(area):
-	print(area)
+	$AnimationPlayer.play("Death")
