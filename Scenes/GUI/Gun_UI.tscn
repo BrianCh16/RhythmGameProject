@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://btwk1btgeve21"]
 
 [ext_resource type="Texture2D" uid="uid://dgt8t4ruggyki" path="res://Assets/gun-rhythm-UI.png" id="1_6qxsk"]
-[ext_resource type="Script" path="res://Scripts/Gun_UI.gd" id="2_noi40"]
+[ext_resource type="Script" path="res://Scripts/GUI/Gun_UI.gd" id="2_noi40"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7xgly"]
 size = Vector2(4, 20)

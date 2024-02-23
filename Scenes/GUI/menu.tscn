@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bg2bep6cr00ay"]
 
-[ext_resource type="Script" path="res://Scripts/menu.gd" id="1_8mbwj"]
+[ext_resource type="Script" path="res://Scripts/GUI/menu.gd" id="1_8mbwj"]
 [ext_resource type="Texture2D" uid="uid://2b5kf6vij5am" path="res://Assets/Glitcha-Title.png" id="2_8tdmi"]
 
 [node name="Menu" type="Control"]

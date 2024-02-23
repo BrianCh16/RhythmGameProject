@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://4qmbwtu2047u"]
+[gd_scene load_steps=15 format=3 uid="uid://4qmbwtu2047u"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_1cpk2"]
 [ext_resource type="Texture2D" uid="uid://cnyoxnlx6nn54" path="res://Assets/Player/PlayerIdle/glitchia-player-idle-Sheet.png" id="1_8rw7w"]
@@ -87,6 +87,10 @@ bg_color = Color(0, 0.176471, 0.301961, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fdsbg"]
 bg_color = Color(0, 0.662745, 0.835294, 1)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nt2fw"]
+radius = 13.5
+height = 40.0
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 scale = Vector2(2, 2)
 collision_mask = 11
@@ -155,6 +159,13 @@ theme_override_styles/background = SubResource("StyleBoxFlat_55iue")
 theme_override_styles/fill = SubResource("StyleBoxFlat_fdsbg")
 max_value = 2.0
 show_percentage = false
+
+[node name="hurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
+visible = false
+position = Vector2(2.5, 10)
+shape = SubResource("CapsuleShape2D_nt2fw")
 
 [connection signal="timeout" from="ShadowTimer" to="." method="_on_shadow_timer_timeout"]
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]

@@ -1,11 +1,17 @@
-[gd_scene load_steps=11 format=3 uid="uid://bstnjlkbhhu4"]
+[gd_scene load_steps=16 format=3 uid="uid://bstnjlkbhhu4"]
 
 [ext_resource type="Script" path="res://Scripts/robot_enemy.gd" id="1_j72pk"]
+[ext_resource type="Shader" uid="uid://bw3swoe3ce5xl" path="res://shaders/hit_flash.tres" id="1_tijvr"]
 [ext_resource type="Texture2D" uid="uid://4eqerud274n1" path="res://Assets/enemy/explosion_3.png" id="2_33qfe"]
 [ext_resource type="Texture2D" uid="uid://c7qwcqbuluavl" path="res://Assets/enemy/FloatingRobot.png" id="3_1vs75"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kwe1x"]
 radius = 5.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xcbj8"]
+shader = ExtResource("1_tijvr")
+shader_parameter/enabled = true
+shader_parameter/tint = Color(1, 1, 1, 1)
 
 [sub_resource type="Animation" id="Animation_he73f"]
 resource_name = "Death"
@@ -17,7 +23,7 @@ tracks/0/path = NodePath("Default:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.1, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -35,6 +41,30 @@ tracks/1/keys = {
 "args": [],
 "method": &"queue_free"
 }]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Area2D/detection:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_cb8hy"]
@@ -65,6 +95,42 @@ tracks/1/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Area2D/detection:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Default:material:shader_parameter/enabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_awsdp"]
 resource_name = "Explosion"
@@ -88,10 +154,10 @@ tracks/1/path = NodePath("Explosion:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(1.2, 2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 1.2, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Color(1.25, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/2/type = "method"
 tracks/2/imported = false
@@ -118,6 +184,30 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Area2D/detection:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_hr8er"]
@@ -182,6 +272,42 @@ tracks/4/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CollisionShape2D:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Area2D/detection:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Default:material:shader_parameter/enabled")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7uo2t"]
 _data = {
@@ -192,7 +318,44 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xdwvc"]
-radius = 24.5051
+radius = 17.5071
+
+[sub_resource type="Animation" id="Animation_mans7"]
+resource_name = "hit_flash"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Default:material:shader_parameter/enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_eact4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Default:material:shader_parameter/enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nu2nj"]
+_data = {
+"RESET": SubResource("Animation_eact4"),
+"hit_flash": SubResource("Animation_mans7")
+}
 
 [node name="RobotEnemy" type="CharacterBody2D"]
 texture_filter = 1
@@ -202,11 +365,12 @@ collision_mask = 5
 script = ExtResource("1_j72pk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, 2)
 shape = SubResource("CircleShape2D_kwe1x")
+disabled = true
 
 [node name="Explosion" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_33qfe")
 hframes = 8
@@ -214,6 +378,7 @@ vframes = 8
 frame = 27
 
 [node name="Default" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_xcbj8")
 texture = ExtResource("3_1vs75")
 hframes = 4
 
@@ -226,7 +391,15 @@ speed_scale = 2.0
 
 [node name="Area2D" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="detection" type="CollisionShape2D" parent="Area2D"]
+visible = false
 shape = SubResource("CircleShape2D_xdwvc")
+disabled = true
+
+[node name="HitFlash" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nu2nj")
+}
+speed_scale = 1.5
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

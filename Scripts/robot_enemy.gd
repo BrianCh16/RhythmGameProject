@@ -21,10 +21,13 @@ func _physics_process(delta):
 
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("player"):
+		body.damage()
 		speed = 0
 		$Explosion.visible = true
 		$AnimationPlayer.play("Explosion")
 	
 func hit():
 	speed = 0
+	$HitFlash.play("hit_flash")
+	await $HitFlash.animation_finished
 	$AnimationPlayer.play("Death")

@@ -1,12 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://35k3lajoan3m"]
+[gd_scene load_steps=15 format=3 uid="uid://35k3lajoan3m"]
 
-[ext_resource type="PackedScene" uid="uid://btwk1btgeve21" path="res://Scenes/Gun_UI.tscn" id="1_e2yda"]
+[ext_resource type="PackedScene" uid="uid://btwk1btgeve21" path="res://Scenes/GUI/Gun_UI.tscn" id="1_e2yda"]
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_twhb6"]
 [ext_resource type="Texture2D" uid="uid://cc1bac1fqiuv7" path="res://Assets/Glitcha-Tileset.png" id="2_p5hk6"]
 [ext_resource type="PackedScene" uid="uid://ll72s4r8qp7s" path="res://Scenes/conductor.tscn" id="3_4134r"]
 [ext_resource type="AudioStream" uid="uid://7vc2lovc177a" path="res://Sounds/lazergun.mp3" id="5_d7xdc"]
 [ext_resource type="PackedScene" uid="uid://4qmbwtu2047u" path="res://Scenes/player.tscn" id="5_klfdw"]
 [ext_resource type="AudioStream" uid="uid://c620bohkujsvb" path="res://Sounds/Glitchia_P1.mp3" id="5_wymax"]
+[ext_resource type="PackedScene" uid="uid://baf1rqk52hky1" path="res://Scenes/GUI/health_container.tscn" id="8_p17tp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x83fu"]
 texture = ExtResource("2_p5hk6")
@@ -158,10 +159,10 @@ cache/0/20/0/kerning_overrides/20/0 = Vector2(0, 0)
 
 [sub_resource type="Theme" id="Theme_tdbce"]
 default_font = SubResource("FontFile_apho8")
-default_font_size = 10
+default_font_size = 20
 
 [sub_resource type="Theme" id="Theme_5lpwa"]
-default_font_size = 10
+default_font_size = 20
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_twhb6")
@@ -200,6 +201,7 @@ offset_left = -281.0
 offset_top = -162.0
 offset_right = -241.0
 offset_bottom = -139.0
+scale = Vector2(0.5, 0.5)
 theme = SubResource("Theme_tdbce")
 
 [node name="Combo" type="Label" parent="Player"]
@@ -208,6 +210,7 @@ offset_left = -283.5
 offset_top = -139.0
 offset_right = -243.5
 offset_bottom = -111.0
+scale = Vector2(0.5, 0.5)
 theme = SubResource("Theme_5lpwa")
 
 [node name="Conductor" parent="." instance=ExtResource("3_4134r")]
@@ -217,6 +220,18 @@ measures = 4
 
 [node name="laser_sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_d7xdc")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Health Container" parent="CanvasLayer" instance=ExtResource("8_p17tp")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -209.0
+offset_top = 10.0
+offset_right = -99.0
+offset_bottom = 10.0
+grow_horizontal = 0
 
 [connection signal="report_beat" from="Conductor" to="." method="_on_conductor_report_beat"]
 [connection signal="report_measure" from="Conductor" to="." method="_on_conductor_report_measure"]

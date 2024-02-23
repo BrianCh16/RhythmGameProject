@@ -12,9 +12,11 @@ extends CharacterBody2D
 @onready var dash_cooldown = $DashCooldown
 
 signal fire_laser(player_pos, player_dir)
+signal health_changed(current_health: int)
 
 var shadow : PackedScene = preload("res://Scenes/shadow.tscn")
 
+var health : int = 5
 var can_dash : bool = true
 
 func _ready():
@@ -76,6 +78,11 @@ func _physics_process(delta):
 
 	dash_cooldown.value = dash_timer.wait_time - dash_timer.time_left
 	move_and_slide()
+
+
+func damage():
+	health -= 1
+	health_changed.emit(health)
 
 
 func add_shadow():

@@ -9,7 +9,9 @@ func _physics_process(delta):
 
 
 func _on_body_entered(body):
-	if not body.is_in_group("player"):
-		if "is_enemy" in body:
-			body.hit()
-		queue_free()
+	if body.is_in_group("player"):
+		return
+
+	if "is_enemy" in body:
+		body.hit()
+	queue_free()

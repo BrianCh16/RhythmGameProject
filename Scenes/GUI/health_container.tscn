@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://baf1rqk52hky1"]
+
+[ext_resource type="Script" path="res://Scripts/GUI/health_container.gd" id="1_e8u27"]
+
+[node name="Health Container" type="HBoxContainer"]
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_e8u27")
+metadata/_edit_use_anchors_ = true

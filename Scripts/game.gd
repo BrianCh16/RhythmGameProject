@@ -19,6 +19,7 @@ var can_fire = false
 #onready
 @onready var player = $Player
 @onready var gun_ui = $Player/gun_UI
+@onready var health = $"CanvasLayer/Health Container"
 
 #load
 var note = preload("res://Scenes/note.tscn")
@@ -30,8 +31,12 @@ var robot : PackedScene = preload("res://Scenes/robot_enemy.tscn")
 func _ready():
 	$Conductor.play_with_beat_offset(6)
 	player.fire_laser.connect(_on_player_fire_laser)
+	player.health_changed.connect(health.update_hearts)
 	gun_ui.sync_shot.connect(_on_gunUI_can_fire)
 	gun_ui.increment_score.connect(_on_gunUI_increment_score)
+	health.set_max_hearts(5)
+	var instance = robot.instantiate()
+	$Projectiles.add_child(instance)
 
 
 func _on_player_fire_laser(player_pos, player_dir):

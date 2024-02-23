@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ll72s4r8qp7s"]
 
 [ext_resource type="AudioStream" uid="uid://butsy5ccicx5e" path="res://Sounds/Crypt of the Necrodancer OST - Crypteque (1-2).mp3" id="1_05crv"]
-[ext_resource type="Script" path="res://Scripts/conductor.gd" id="1_tq1g2"]
+[ext_resource type="Script" path="res://Scripts/GUI/conductor.gd" id="1_tq1g2"]
 
 [node name="Conductor" type="AudioStreamPlayer2D"]
 stream = ExtResource("1_05crv")
