@@ -29,14 +29,14 @@ var robot : PackedScene = preload("res://Scenes/robot_enemy.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Conductor.play_with_beat_offset(6)
+	#$Conductor.play_with_beat_offset(6)
 	player.fire_laser.connect(_on_player_fire_laser)
 	player.health_changed.connect(health.update_hearts)
 	gun_ui.sync_shot.connect(_on_gunUI_can_fire)
 	gun_ui.increment_score.connect(_on_gunUI_increment_score)
 	health.set_max_hearts(5)
-	var instance = robot.instantiate()
-	$Projectiles.add_child(instance)
+	#var instance = robot.instantiate()
+	#$Projectiles.add_child(instance)
 
 
 func _on_player_fire_laser(player_pos, player_dir):

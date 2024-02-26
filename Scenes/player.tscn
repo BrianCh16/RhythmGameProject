@@ -103,12 +103,14 @@ position = Vector2(2, 9)
 shape = SubResource("CapsuleShape2D_wwp5g")
 
 [node name="Idle" type="Sprite2D" parent="."]
+modulate = Color(1.5, 1.5, 2, 1)
 texture_filter = 1
 texture = ExtResource("1_8rw7w")
 hframes = 9
 
 [node name="Walk" type="Sprite2D" parent="."]
 visible = false
+modulate = Color(1.5, 1.5, 2, 1)
 texture_filter = 1
 texture = ExtResource("2_2xhi4")
 hframes = 8
@@ -130,6 +132,7 @@ libraries = {
 wait_time = 0.1
 
 [node name="Lightning" type="CPUParticles2D" parent="."]
+modulate = Color(3, 3, 3, 1)
 show_behind_parent = true
 position = Vector2(2.5, 23.5)
 emitting = false
