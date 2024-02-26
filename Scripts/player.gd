@@ -17,6 +17,7 @@ signal health_changed(current_health: int)
 var shadow : PackedScene = preload("res://Scenes/shadow.tscn")
 
 var health : int = 5
+var dash_speed : int = 1
 var can_dash : bool = true
 
 func _ready():
@@ -51,21 +52,25 @@ func _physics_process(delta):
 	#dash
 	if Input.is_action_pressed("Dash") and can_dash:
 		shadow_timer.start()
-		lightning_particles.emitting = true
-		$DashSound.play()
 		$DashTimer.start()
+		$DashDuration.start()
+		lightning_particles.emitting = true
 		dash_cooldown.visible = true
 		can_dash = false
+		$DashSound.play()
 		
-		var tween = get_tree().create_tween()
-		tween.tween_property(self, "position", position + velocity * 1.3, 0.4)
-		direction = Vector2.ZERO
-		await tween.finished
+		#var tween = get_tree().create_tween()
+		#tween.tween_property(self, "position", position + velocity * 1.3, 0.4)
+		#direction = Vector2.ZERO
+		#await tween.finished
 		
+	if is_dashing():
+		dash_speed = 3
+	else:
+		dash_speed = 1
 		shadow_timer.stop()
 		lightning_particles.emitting = false
-	#walk and idle
-	else:
+		#walk and idle
 		if direction != Vector2.ZERO:
 			anim.play("Walk")
 			walk.visible = true
@@ -74,7 +79,8 @@ func _physics_process(delta):
 			anim.play("Idle")
 			walk.visible = false
 			idle.visible = true
-		velocity = direction * speed
+	
+	velocity = direction * speed * dash_speed
 
 	dash_cooldown.value = dash_timer.wait_time - dash_timer.time_left
 	move_and_slide()
@@ -89,6 +95,10 @@ func add_shadow():
 	var instance = shadow.instantiate()
 	instance.set_property(position, scale)
 	$"../Projectiles".add_child(instance)
+
+
+func is_dashing():
+	return !$DashDuration.is_stopped()
 
 
 func _on_shadow_timer_timeout():

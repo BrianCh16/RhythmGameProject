@@ -1,28 +1,31 @@
-[gd_scene load_steps=15 format=3 uid="uid://cqgqpe7ab44hn"]
+[gd_scene load_steps=16 format=3 uid="uid://cqgqpe7ab44hn"]
 
 [ext_resource type="Texture2D" uid="uid://bb8h2f5p2b6js" path="res://Assets/enemy/Retinazer-Sheet.png" id="1_df6pp"]
 [ext_resource type="Texture2D" uid="uid://dbqan2qfeux8h" path="res://Assets/enemy/Laser_sheet.png" id="2_4nkpa"]
 [ext_resource type="Texture2D" uid="uid://cerhh6lmvx5at" path="res://Assets/light.png" id="3_xq7fg"]
 [ext_resource type="FontFile" uid="uid://cuarff0l5ufim" path="res://shaders/OptimusPrinceps.ttf" id="4_6jhhx"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_w6ntl"]
+radius = 31.0161
+
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_6pegq"]
 polygon = PackedVector2Array(19, -11, 17, -11, 17, -11, 17, -10, 16, -10, 16, -9, 15, -9, 15, -8, 14, -8, 14, -6, 13, -6, 13, -3, 12, -3, 12, 5, 13, 5, 13, 7, 14, 7, 14, 9, 15, 9, 15, 10, 16, 10, 16, 11, 17, 11, 17, 12, 19, 12, 19, 15, 18, 15, 18, 17, 17, 17, 17, 18, 16, 18, 16, 19, 15, 19, 15, 20, 16, 20, 16, 22, 1, 32, -13, 32, -14, 31, -14, 21, -28, 21, -29, 20, -29, 16, -28, 15, -25, 15, -25, 12, -27, 12, -27, 11, -29, 11, -29, 10, -30, 10, -30, 9, -31, 9, -31, 8, -32, 8, -32, 6, -33, 6, -33, 3, -34, 3, -34, 1, -33, 1, -33, 0, -32, 0, -32, -2, -33, -2, -33, -3, -34, -3, -34, -6, -33, -6, -33, -9, -32, -9, -32, -11, -31, -11, -31, -12, -28, -12, -28, -14, -29, -14, -29, -15, -28, -15, -28, -16, -29, -16, -29, -20, -28, -21, -23, -21, -23, -22, -21, -23, -17, -23, -17, -25, -14, -25, -14, -31, -13, -32, 1, -32, 1, -31, 3, -31, 3, -30, 6, -30, 6, -29, 8, -29, 8, -28, 10, -28, 10, -27, 12, -27, 12, -26, 13, -26, 13, -26, 13, -25, 14, -25, 14, -24, 15, -24, 15, -23, 16, -23, 16, -20, 15, -20, 15, -18, 16, -18, 16, -17, 17, -17, 17, -16, 18, -16, 18, -14, 19, -14)
 
-[sub_resource type="Animation" id="Animation_op70y"]
-resource_name = "laser"
-length = 1.87501
+[sub_resource type="Animation" id="Animation_11c3r"]
+resource_name = "Extend"
+length = 0.500013
 step = 0.125
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D/LaserSheet:frame")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1, 1.125, 1.25, 1.375, 1.5, 1.625, 1.75, 1.875),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 0]
+"values": [4, 5, 6, 7]
 }
 
 [sub_resource type="Animation" id="Animation_kl4aq"]
@@ -112,6 +115,23 @@ tracks/6/keys = {
 "values": [Color(1, 1, 1, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_r4jrw"]
+resource_name = "died"
+length = 4.0
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/You Died:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 3.5, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_t1iw5"]
 resource_name = "idle"
 length = 1.00001
@@ -142,21 +162,21 @@ tracks/1/keys = {
 "values": [Vector2(1, 1), Vector2(1.05, 1.05), Vector2(1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_11c3r"]
-resource_name = "Extend"
-length = 0.500013
+[sub_resource type="Animation" id="Animation_op70y"]
+resource_name = "laser"
+length = 1.87501
 step = 0.125
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D/LaserSheet:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.125, 0.25, 0.375),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1, 1.125, 1.25, 1.375, 1.5, 1.625, 1.75, 1.875),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [4, 5, 6, 7]
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 0]
 }
 
 [sub_resource type="Animation" id="Animation_ey6s1"]
@@ -246,23 +266,6 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_r4jrw"]
-resource_name = "died"
-length = 4.0
-step = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("UI/You Died:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 3.5, 4),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a5ql3"]
 _data = {
 "Extend": SubResource("Animation_11c3r"),
@@ -276,6 +279,13 @@ _data = {
 }
 
 [node name="Boss" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-5, 0)
+shape = SubResource("CircleShape2D_w6ntl")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1.5, 1.5, 1.5, 1)
@@ -313,6 +323,7 @@ autoplay = "idle"
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="ProgressBar" type="ProgressBar" parent="UI"]
+visible = false
 custom_minimum_size = Vector2(400, 0)
 anchors_preset = 5
 anchor_left = 0.5
@@ -397,3 +408,12 @@ scale = Vector2(1.5, 1.5)
 theme_override_fonts/font = ExtResource("4_6jhhx")
 theme_override_font_sizes/font_size = 30
 text = "YOU DIED"
+
+[node name="state debug" type="Label" parent="."]
+offset_left = -27.0
+offset_top = -61.0
+offset_right = 22.0
+offset_bottom = -38.0
+text = "debug"
+
+[node name="FiniteStateMachine" type="Node2D" parent="."]

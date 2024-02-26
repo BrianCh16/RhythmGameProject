@@ -239,7 +239,7 @@ offset_bottom = 10.0
 grow_horizontal = 0
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.537255, 0.537255, 0.537255, 1)
+color = Color(0.431373, 0.431373, 0.431373, 1)
 
 [node name="Boss" parent="." instance=ExtResource("9_hrrce")]
 position = Vector2(378, 265)
