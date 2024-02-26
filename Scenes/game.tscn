@@ -242,7 +242,7 @@ grow_horizontal = 0
 color = Color(0.431373, 0.431373, 0.431373, 1)
 
 [node name="Boss" parent="." instance=ExtResource("9_hrrce")]
-position = Vector2(378, 265)
+position = Vector2(141, 152)
 scale = Vector2(2.5, 2.5)
 
 [connection signal="report_beat" from="Conductor" to="." method="_on_conductor_report_beat"]

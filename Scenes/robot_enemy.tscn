@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://bstnjlkbhhu4"]
 
-[ext_resource type="Script" path="res://Scripts/robot_enemy.gd" id="1_j72pk"]
+[ext_resource type="Script" path="res://Scripts/enemies/robot_enemy.gd" id="1_j72pk"]
 [ext_resource type="Shader" uid="uid://bw3swoe3ce5xl" path="res://shaders/hit_flash.tres" id="1_tijvr"]
 [ext_resource type="Texture2D" uid="uid://4eqerud274n1" path="res://Assets/enemy/explosion_3.png" id="2_33qfe"]
 [ext_resource type="Texture2D" uid="uid://c7qwcqbuluavl" path="res://Assets/enemy/FloatingRobot.png" id="3_1vs75"]
@@ -131,6 +131,18 @@ tracks/4/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Explosion:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_awsdp"]
 resource_name = "Explosion"
@@ -204,6 +216,18 @@ tracks/5/path = NodePath("Area2D/detection:disabled")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Explosion:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -303,6 +327,18 @@ tracks/7/path = NodePath("Default:material:shader_parameter/enabled")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Explosion:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,

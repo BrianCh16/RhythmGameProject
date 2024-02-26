@@ -58,18 +58,15 @@ func _physics_process(delta):
 		dash_cooldown.visible = true
 		can_dash = false
 		$DashSound.play()
-		
-		#var tween = get_tree().create_tween()
-		#tween.tween_property(self, "position", position + velocity * 1.3, 0.4)
-		#direction = Vector2.ZERO
-		#await tween.finished
-		
+
 	if is_dashing():
 		dash_speed = 3
 	else:
 		dash_speed = 1
 		shadow_timer.stop()
 		lightning_particles.emitting = false
+
+
 		#walk and idle
 		if direction != Vector2.ZERO:
 			anim.play("Walk")
@@ -79,9 +76,8 @@ func _physics_process(delta):
 			anim.play("Idle")
 			walk.visible = false
 			idle.visible = true
-	
-	velocity = direction * speed * dash_speed
 
+	velocity = direction * speed * dash_speed
 	dash_cooldown.value = dash_timer.wait_time - dash_timer.time_left
 	move_and_slide()
 

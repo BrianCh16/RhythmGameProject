@@ -27,6 +27,12 @@ window/stretch/mode="viewport"
 
 project/assembly_name="Rhythm Jam 2024"
 
+[file_customization]
+
+folder_colors={
+"res://Scripts/enemies/FSM/": "orange"
+}
+
 [input]
 
 Shoot={
