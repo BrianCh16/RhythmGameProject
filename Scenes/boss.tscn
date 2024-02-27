@@ -1,19 +1,81 @@
-[gd_scene load_steps=25 format=3 uid="uid://cqgqpe7ab44hn"]
+[gd_scene load_steps=29 format=3 uid="uid://cqgqpe7ab44hn"]
 
 [ext_resource type="Texture2D" uid="uid://bb8h2f5p2b6js" path="res://Assets/enemy/Retinazer-Sheet.png" id="1_df6pp"]
+[ext_resource type="Script" path="res://Scripts/enemies/boss.gd" id="1_uuxpr"]
 [ext_resource type="Texture2D" uid="uid://dbqan2qfeux8h" path="res://Assets/enemy/Laser_sheet.png" id="2_4nkpa"]
 [ext_resource type="Texture2D" uid="uid://4eqerud274n1" path="res://Assets/enemy/explosion_3.png" id="2_350lh"]
 [ext_resource type="Texture2D" uid="uid://cerhh6lmvx5at" path="res://Assets/light.png" id="3_xq7fg"]
 [ext_resource type="FontFile" uid="uid://cuarff0l5ufim" path="res://shaders/OptimusPrinceps.ttf" id="4_6jhhx"]
 [ext_resource type="Script" path="res://Scripts/enemies/FSM/FiniteStateMachine.gd" id="7_m8x6k"]
+[ext_resource type="Script" path="res://Scripts/enemies/FSM/Follow.gd" id="8_8q3px"]
 [ext_resource type="Script" path="res://state.gd" id="8_ehth8"]
 [ext_resource type="Script" path="res://Scripts/enemies/FSM/startUp.gd" id="8_jbrsv"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_w6ntl"]
-radius = 31.0161
+[ext_resource type="Script" path="res://Scripts/enemies/FSM/Melee.gd" id="10_fdgrd"]
+[ext_resource type="Script" path="res://Scripts/enemies/FSM/Dash.gd" id="11_d34vt"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_6pegq"]
 polygon = PackedVector2Array(19, -11, 17, -11, 17, -11, 17, -10, 16, -10, 16, -9, 15, -9, 15, -8, 14, -8, 14, -6, 13, -6, 13, -3, 12, -3, 12, 5, 13, 5, 13, 7, 14, 7, 14, 9, 15, 9, 15, 10, 16, 10, 16, 11, 17, 11, 17, 12, 19, 12, 19, 15, 18, 15, 18, 17, 17, 17, 17, 18, 16, 18, 16, 19, 15, 19, 15, 20, 16, 20, 16, 22, 1, 32, -13, 32, -14, 31, -14, 21, -28, 21, -29, 20, -29, 16, -28, 15, -25, 15, -25, 12, -27, 12, -27, 11, -29, 11, -29, 10, -30, 10, -30, 9, -31, 9, -31, 8, -32, 8, -32, 6, -33, 6, -33, 3, -34, 3, -34, 1, -33, 1, -33, 0, -32, 0, -32, -2, -33, -2, -33, -3, -34, -3, -34, -6, -33, -6, -33, -9, -32, -9, -32, -11, -31, -11, -31, -12, -28, -12, -28, -14, -29, -14, -29, -15, -28, -15, -28, -16, -29, -16, -29, -20, -28, -21, -23, -21, -23, -22, -21, -23, -17, -23, -17, -25, -14, -25, -14, -31, -13, -32, 1, -32, 1, -31, 3, -31, 3, -30, 6, -30, 6, -29, 8, -29, 8, -28, 10, -28, 10, -27, 12, -27, 12, -26, 13, -26, 13, -26, 13, -25, 14, -25, 14, -24, 15, -24, 15, -23, 16, -23, 16, -20, 15, -20, 15, -18, 16, -18, 16, -17, 17, -17, 17, -16, 18, -16, 18, -14, 19, -14)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w6ntl"]
+radius = 26.0192
+
+[sub_resource type="Animation" id="Animation_r4jrw"]
+resource_name = "died"
+length = 4.0
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/You Died:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 3.5, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.705882), Color(1, 1, 1, 0.705882), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI/You Died Text:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 3.5, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_eagy3"]
+resource_name = "victory"
+length = 4.0
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/Victory Achieved:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 3.5, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.705882), Color(1, 1, 1, 0.705882), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI/Victory Text:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 3.5, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_kl4aq"]
 length = 0.001
@@ -174,64 +236,6 @@ tracks/12/keys = {
 "values": [Vector2(15, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_op70y"]
-resource_name = "laser"
-length = 1.87501
-step = 0.125
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Boss Sprite/LaserSheet:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1, 1.125, 1.25, 1.375, 1.5, 1.625, 1.75, 1.875),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 0]
-}
-
-[sub_resource type="Animation" id="Animation_qv5bs"]
-resource_name = "start"
-length = 1.37501
-step = 0.125
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Boss Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.375, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [8, 9, 10, 11]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Boss Sprite:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.75, 0.875, 1.125, 1.25, 1.375),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [Color(0.352941, 0.352941, 0.352941, 1), Color(1.5, 1.5, 1.5, 1), Color(0.352941, 0.352941, 0.352941, 1), Color(1.5, 1.5, 1.5, 1), Color(0.352941, 0.352941, 0.352941, 1), Color(1.5, 1.5, 1.5, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Boss Sprite/PointLight2D:energy")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.75, 0.875, 1.125, 1.25, 1.375),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0.0, 1.0, 0.0, 1.0, 0.0, 1.0]
-}
-
 [sub_resource type="Animation" id="Animation_rykm3"]
 resource_name = "dash"
 length = 0.500013
@@ -333,93 +337,6 @@ tracks/1/keys = {
 "values": [Vector2(15, 0), Vector2(24, 0), Vector2(31, 0), Vector2(34, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_ey6s1"]
-resource_name = "shoot"
-length = 0.375012
-step = 0.125
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Boss Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.125, 0.25, 0.375),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [11, 10, 8, 11]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Boss Sprite/PointLight2D:energy")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.375),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [1.0, 0.0, 0.9999]
-}
-
-[sub_resource type="Animation" id="Animation_r4jrw"]
-resource_name = "died"
-length = 4.0
-step = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("UI/You Died:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 3.5, 4),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.705882), Color(1, 1, 1, 0.705882), Color(1, 1, 1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("UI/You Died Text:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 3.5, 4),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_eagy3"]
-resource_name = "victory"
-length = 4.0
-step = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("UI/Victory Achieved:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 3.5, 4),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.705882), Color(1, 1, 1, 0.705882), Color(1, 1, 1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("UI/Victory Text:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 3.5, 4),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_t1iw5"]
 resource_name = "idle"
 length = 1.00001
@@ -449,33 +366,64 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1.05, 1.05), Vector2(1, 1)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Boss Sprite/PointLight2D:energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
 
-[sub_resource type="Animation" id="Animation_5dgf6"]
-resource_name = "summon"
+[sub_resource type="Animation" id="Animation_op70y"]
+resource_name = "laser"
+length = 1.87501
 step = 0.125
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Boss Sprite/PointLight2D:energy")
+tracks/0/path = NodePath("Boss Sprite/LaserSheet:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [1.0, 3.0, 1.0, 3.0, 1.0]
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1, 1.125, 1.25, 1.375, 1.5, 1.625, 1.75, 1.875),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 0]
+}
+
+[sub_resource type="Animation" id="Animation_ey6s1"]
+resource_name = "shoot"
+length = 0.500017
+loop_mode = 1
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Boss Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [11, 10, 8, 11]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Boss Sprite:modulate")
-tracks/1/interp = 1
+tracks/1/path = NodePath("Boss Sprite/PointLight2D:energy")
+tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(1.5, 1.5, 1.5, 1), Color(1.50196, 0.603922, 0.603922, 1), Color(1.5, 1.5, 1.5, 1), Color(1.50196, 0.603922, 0.603922, 1), Color(1.5, 1.5, 1.5, 1)]
+"times": PackedFloat32Array(0, 0.25, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [1.0, 0.0, 0.9999]
 }
 
 [sub_resource type="Animation" id="Animation_rk7t6"]
@@ -507,6 +455,75 @@ tracks/1/keys = {
 "values": [1.0, 3.0, 1.0]
 }
 
+[sub_resource type="Animation" id="Animation_qv5bs"]
+resource_name = "start"
+length = 1.87501
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Boss Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.375, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Boss Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.75, 0.875, 1.125, 1.25, 1.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Color(0.352941, 0.352941, 0.352941, 1), Color(1.5, 1.5, 1.5, 1), Color(0.352941, 0.352941, 0.352941, 1), Color(1.5, 1.5, 1.5, 1), Color(0.352941, 0.352941, 0.352941, 1), Color(1.5, 1.5, 1.5, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Boss Sprite/PointLight2D:energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.75, 0.875, 1.125, 1.25, 1.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0.0, 1.0, 0.0, 1.0, 0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_5dgf6"]
+resource_name = "summon"
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Boss Sprite/PointLight2D:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [1.0, 3.0, 1.0, 3.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Boss Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1.5, 1.5, 1.5, 1), Color(1.50196, 0.603922, 0.603922, 1), Color(1.5, 1.5, 1.5, 1), Color(1.50196, 0.603922, 0.603922, 1), Color(1.5, 1.5, 1.5, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a5ql3"]
 _data = {
 "CONDITION died": SubResource("Animation_r4jrw"),
@@ -529,11 +546,7 @@ radius = 103.0
 [node name="Boss" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 15
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(-5, 0)
-shape = SubResource("CircleShape2D_w6ntl")
+script = ExtResource("1_uuxpr")
 
 [node name="Explosion" type="Sprite2D" parent="."]
 modulate = Color(2, 1, 1, 1)
@@ -570,11 +583,15 @@ texture_scale = 0.25
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Boss Sprite"]
 occluder = SubResource("OccluderPolygon2D_6pegq")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-5, 0)
+shape = SubResource("CircleShape2D_w6ntl")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_a5ql3")
 }
-autoplay = "follow"
+autoplay = "start"
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -685,10 +702,13 @@ script = ExtResource("7_m8x6k")
 script = ExtResource("8_jbrsv")
 
 [node name="Follow" type="Node2D" parent="FiniteStateMachine"]
-script = ExtResource("8_ehth8")
+script = ExtResource("8_8q3px")
+
+[node name="Melee" type="Node2D" parent="FiniteStateMachine"]
+script = ExtResource("10_fdgrd")
 
 [node name="Dash" type="Node2D" parent="FiniteStateMachine"]
-script = ExtResource("8_ehth8")
+script = ExtResource("11_d34vt")
 
 [node name="LaserBeam" type="Node2D" parent="FiniteStateMachine"]
 script = ExtResource("8_ehth8")
@@ -702,4 +722,6 @@ script = ExtResource("8_ehth8")
 [node name="Death" type="Node2D" parent="FiniteStateMachine"]
 script = ExtResource("8_ehth8")
 
+[connection signal="animation_finished" from="AnimationPlayer" to="FiniteStateMachine/startUp" method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="FiniteStateMachine/Dash" method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="PlayerDetection" to="FiniteStateMachine/startUp" method="_on_player_detection_body_entered"]
