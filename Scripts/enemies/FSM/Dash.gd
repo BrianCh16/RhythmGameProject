@@ -1,6 +1,7 @@
 extends State
 
 var can_transition : bool = false
+var shadow : PackedScene = preload("res://Scenes/shadow.tscn")
 
 
 func enter():

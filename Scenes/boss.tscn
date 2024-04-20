@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cqgqpe7ab44hn"]
+[gd_scene load_steps=30 format=3 uid="uid://cqgqpe7ab44hn"]
 
 [ext_resource type="Texture2D" uid="uid://bb8h2f5p2b6js" path="res://Assets/enemy/Retinazer-Sheet.png" id="1_df6pp"]
 [ext_resource type="Script" path="res://Scripts/enemies/boss.gd" id="1_uuxpr"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://Scripts/enemies/FSM/startUp.gd" id="8_jbrsv"]
 [ext_resource type="Script" path="res://Scripts/enemies/FSM/Melee.gd" id="10_fdgrd"]
 [ext_resource type="Script" path="res://Scripts/enemies/FSM/Dash.gd" id="11_d34vt"]
+[ext_resource type="Script" path="res://Scripts/enemies/FSM/Death.gd" id="13_21oxm"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_6pegq"]
 polygon = PackedVector2Array(19, -11, 17, -11, 17, -11, 17, -10, 16, -10, 16, -9, 15, -9, 15, -8, 14, -8, 14, -6, 13, -6, 13, -3, 12, -3, 12, 5, 13, 5, 13, 7, 14, 7, 14, 9, 15, 9, 15, 10, 16, 10, 16, 11, 17, 11, 17, 12, 19, 12, 19, 15, 18, 15, 18, 17, 17, 17, 17, 18, 16, 18, 16, 19, 15, 19, 15, 20, 16, 20, 16, 22, 1, 32, -13, 32, -14, 31, -14, 21, -28, 21, -29, 20, -29, 16, -28, 15, -25, 15, -25, 12, -27, 12, -27, 11, -29, 11, -29, 10, -30, 10, -30, 9, -31, 9, -31, 8, -32, 8, -32, 6, -33, 6, -33, 3, -34, 3, -34, 1, -33, 1, -33, 0, -32, 0, -32, -2, -33, -2, -33, -3, -34, -3, -34, -6, -33, -6, -33, -9, -32, -9, -32, -11, -31, -11, -31, -12, -28, -12, -28, -14, -29, -14, -29, -15, -28, -15, -28, -16, -29, -16, -29, -20, -28, -21, -23, -21, -23, -22, -21, -23, -17, -23, -17, -25, -14, -25, -14, -31, -13, -32, 1, -32, 1, -31, 3, -31, 3, -30, 6, -30, 6, -29, 8, -29, 8, -28, 10, -28, 10, -27, 12, -27, 12, -26, 13, -26, 13, -26, 13, -25, 14, -25, 14, -24, 15, -24, 15, -23, 16, -23, 16, -20, 15, -20, 15, -18, 16, -18, 16, -17, 17, -17, 17, -16, 18, -16, 18, -14, 19, -14)
@@ -292,20 +293,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
-}
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(1.96875),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"queue_free"
-}]
 }
 
 [sub_resource type="Animation" id="Animation_11c3r"]
@@ -720,7 +707,7 @@ script = ExtResource("8_ehth8")
 script = ExtResource("8_ehth8")
 
 [node name="Death" type="Node2D" parent="FiniteStateMachine"]
-script = ExtResource("8_ehth8")
+script = ExtResource("13_21oxm")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="FiniteStateMachine/startUp" method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="FiniteStateMachine/Dash" method="_on_animation_player_animation_finished"]
