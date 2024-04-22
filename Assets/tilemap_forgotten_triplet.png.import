@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cc1bac1fqiuv7"
-path="res://.godot/imported/Glitcha-Tileset.png-5eec89d9c02815eef9854a4ce9957bae.ctex"
+uid="uid://buhm60ifgotgn"
+path="res://.godot/imported/tilemap_forgotten_triplet.png-c7fde7945cab13ca3314b59359bb51e6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Glitcha-Tileset.png"
-dest_files=["res://.godot/imported/Glitcha-Tileset.png-5eec89d9c02815eef9854a4ce9957bae.ctex"]
+source_file="res://Assets/tilemap_forgotten_triplet.png"
+dest_files=["res://.godot/imported/tilemap_forgotten_triplet.png-c7fde7945cab13ca3314b59359bb51e6.ctex"]
 
 [params]
 
