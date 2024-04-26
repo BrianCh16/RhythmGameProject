@@ -291,5 +291,6 @@ grow_horizontal = 0
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.431373, 0.431373, 0.431373, 1)
 
+[connection signal="startGame" from="Boss" to="." method="_on_boss_start_game"]
 [connection signal="report_beat" from="Conductor" to="." method="_on_conductor_report_beat"]
 [connection signal="report_measure" from="Conductor" to="." method="_on_conductor_report_measure"]

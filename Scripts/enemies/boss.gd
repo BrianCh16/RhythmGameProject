@@ -4,6 +4,8 @@ extends CharacterBody2D
 @onready var sprite = $"Boss Sprite"
 @onready var progress_bar = $UI/ProgressBar
 
+signal startGame
+
 var is_enemy : bool = true
 var direction : Vector2
 var look_player : bool = false: 
@@ -19,6 +21,11 @@ var health = 100:
 
 func _ready():
 	set_physics_process(false)
+	var start = get_node("FiniteStateMachine/startUp")
+	start.start_up.connect(_on_StartUp)
+
+func _on_StartUp():
+	startGame.emit()
 
 func _process(delta):
 	direction = player.position - position

@@ -2,7 +2,7 @@ extends State
 
 @onready var progress_bar = owner.find_child("ProgressBar")
 @onready var detection = $"../../PlayerDetection/CollisionShape2D"
-
+signal start_up
 
 var player_entered : bool = false:
 	set(value):
@@ -19,6 +19,7 @@ func enter():
 func _on_player_detection_body_entered(body):
 	animation_player.play()
 	player_entered = true
+	start_up.emit()
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "start":
