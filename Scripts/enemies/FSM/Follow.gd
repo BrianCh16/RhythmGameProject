@@ -14,7 +14,7 @@ func exit():
 
 func transition():
 	var distance = owner.direction.length()
-	if distance < 110:
+	if distance < 110 and distance > 0:
 		get_parent().change_state("Melee")
 	if distance > 450:
 		get_parent().change_state("Dash")

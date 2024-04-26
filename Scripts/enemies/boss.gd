@@ -17,6 +17,11 @@ var health = 100:
 		if value <= 0:
 			progress_bar.visible = false
 			find_child("FiniteStateMachine").change_state("Death")
+		if value <= 50:
+			set_process(false)
+			direction = Vector2.ZERO
+			$AnimationPlayer.play("extend")
+			
 
 
 func _ready():

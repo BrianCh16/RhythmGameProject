@@ -39,7 +39,7 @@ func _ready():
 	#var instance = robot.instantiate()
 	#$Projectiles.add_child(instance)
 
-# Called when player enters boss detection radius
+# Called when player enters boss detection radius 
 func _on_boss_start_game():
 	$Conductor.play_with_beat_offset(6)
 	
